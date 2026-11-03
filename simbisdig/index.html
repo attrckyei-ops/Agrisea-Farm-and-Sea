@@ -1,0 +1,547 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agrisea - From Farm & Sea to Your Table</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="login-screen" id="login-screen">
+  <section class="login-brand" aria-label="Agrisea">
+    <a class="login-logo" href="#">Agri<span>sea.</span></a>
+    <div class="login-brand-copy">
+      <p class="login-eyebrow">FROM FARM & SEA TO YOUR TABLE</p>
+      <h1>Hasil segar, langsung dari sumbernya.</h1>
+      <p>Temukan produk pertanian dan laut pilihan dari mitra lokal.</p>
+    </div>
+    <p class="login-brand-foot">Agrisea menghubungkan hasil tani dan laut Indonesia.</p>
+  </section>
+
+  <section class="login-panel">
+    <div class="login-form-wrap">
+      <p class="login-eyebrow login-eyebrow-dark">SELAMAT DATANG</p>
+      <h2>Masuk ke Agrisea</h2>
+      <p class="login-intro" id="login-intro">Masuk sebagai pengguna untuk melanjutkan.</p>
+
+      <div class="role-selector" role="group" aria-label="Pilih jenis akun">
+        <button class="role-option active" type="button" aria-pressed="true" onclick="selectAccountRole('pengguna', this)">Pengguna</button>
+        <button class="role-option" type="button" aria-pressed="false" onclick="selectAccountRole('mitra', this)">Mitra</button>
+      </div>
+
+      <form class="login-form" onsubmit="handleLogin(event)">
+        <label for="login-email">Email</label>
+        <input id="login-email" name="email" type="email" placeholder="nama@email.com" autocomplete="username" required>
+
+        <label for="login-password">Kata sandi</label>
+        <input id="login-password" name="password" type="password" placeholder="Masukkan kata sandi" autocomplete="current-password" required>
+
+        <button class="login-submit" id="login-submit" type="submit">Masuk sebagai Pengguna</button>
+      </form>
+
+      <p class="auth-note">Mode demo: formulir ini belum terhubung ke autentikasi server.</p>
+    </div>
+  </section>
+</div>
+
+<div id="home-page" hidden>
+
+<header>
+  <div class="logo">Agri<span>sea.</span></div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">Tentang</a>
+    <a href="#market">Marketplace</a>
+    <a href="#supplier">Supplier</a>
+    <a href="#contact">Kontak</a>
+  </nav>
+
+  <button class="cart" onclick="showCart()">
+    🛒 Keranjang (<span id="cart-count">0</span>)
+  </button>
+</header>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-content">
+    <h1>
+      Menghubungkan Hasil <span>Tani & Laut</span>
+      untuk Masa Depan Berkelanjutan.
+    </h1>
+
+    <p>
+      Agrisea adalah platform distribusi digital yang
+      menghubungkan petani dan nelayan langsung dengan
+      konsumen, restoran, hotel, dan UMKM.
+      Produk lebih segar, distribusi lebih mudah,
+      dan harga lebih transparan.
+    </p>
+
+    <a href="#market" class="btn">Jelajahi Produk</a>
+    <a href="#supplier" class="btn btn-blue">Jadi Mitra</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-title">
+    <h2>Mengapa Agrisea?</h2>
+    <p>
+      Ekosistem distribusi hasil pertanian
+      dan perikanan yang lebih efektif.
+    </p>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="icon">🌱</div>
+      <h3>Direct Sourcing</h3>
+      <p>
+        Menghubungkan pembeli langsung dengan petani
+        and nelayan untuk memperpendek rantai distribusi.
+      </p>
+    </div>
+    <div class="feature">
+      <div class="icon">🐟</div>
+      <h3>Produk Berkualitas</h3>
+      <p>
+        Proses pemeriksaan kualitas, penyortiran,
+        dan pengemasan untuk menjaga kesegaran produk.
+      </p>
+    </div>
+
+    <div class="feature">
+      <div class="icon">🚚</div>
+      <h3>Smart Distribution</h3>
+      <p>
+        Pengiriman terjadwal dengan sistem distribusi 
+        dari petani dan nelayan terdekat.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETPLACE -->
+<section class="marketplace" id="market">
+  <div class="section-title">
+    <h2>Marketplace Agrisea</h2>
+    <p>
+      Temukan berbagai produk segar dari petani
+      dan nelayan mitra kami.
+    </p>
+  </div>
+
+  <div class="filter">
+    <button onclick="filterProducts('all')">Semua</button>
+    <button onclick="filterProducts('sayur')">Hasil Tani</button>
+    <button onclick="filterProducts('laut')">Hasil Laut</button>
+    <button onclick="filterProducts('terlaris')">Produk Terlaris</button>
+  </div>
+
+  <div class="location-controls">
+    <button class="location-button" type="button" onclick="locateBuyer()">
+      Gunakan lokasi saya
+    </button>
+    <p id="location-status" class="location-status" aria-live="polite">
+      Titik mitra masih contoh. Izinkan lokasi untuk menghitung jarak terdekat.
+    </p>
+  </div>
+
+  <div class="products" id="product-list">
+
+    <div class="product" data-category="sayur" data-bestseller="true" data-location="Lembang" data-lat="-6.817" data-lng="107.617">
+      <div class="product-image">
+        <img src="Sambal Minced Beef with Fried Egg and Bok Choy —___.jpg" alt="Sayur pakcoy segar">
+      </div>
+      <div class="product-info">
+        <span class="product-badge">Terlaris</span>
+        <h3>Sayur Pakcoy</h3>
+        <p>Hasil tani segar dari petani mitra.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Lembang · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp12.000 / kg</div>
+        <button class="btn" onclick="addCart('Sayur Pakcoy',12000)">
+          Tambah Keranjang
+        </button>
+      </div>
+    </div>
+
+    <div class="product" data-category="sayur" data-location="Bandung" data-lat="-6.914" data-lng="107.609">
+      <div class="product-image">
+        <img src="download (1).jpg" alt="wortel segar">
+      </div>
+      <div class="product-info">
+        <h3>Wortel Segar</h3>
+        <p>Dipanen dan disortir berdasarkan kualitas.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Bandung · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp15.000 / kg</div>
+        <button class="btn" onclick="addCart('Wortel Segar',15000)">
+          Tambah Keranjang
+        </button>
+      </div>
+    </div>
+
+    <div class="product" data-category="laut" data-bestseller="true" data-location="Cirebon" data-lat="-6.732" data-lng="108.552">
+      <div class="product-image">
+        <img src="ikanbandeng.jpg" alt="Ikan Bandeng segar">
+      </div>
+      <div class="product-info">
+        <span class="product-badge">Terlaris</span>
+        <h3>Ikan Bandeng</h3>
+        <p>Hasil tangkapan dan budidaya nelayan mitra.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Cirebon · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp35.000 / kg</div>
+        <button class="btn" onclick="addCart('Ikan Bandeng',35000)">
+          Tambah Keranjang
+        </button>
+      </div>
+    </div>
+
+    <div class="product" data-category="laut" data-bestseller="true" data-location="Indramayu" data-lat="-6.326" data-lng="108.320">
+      <div class="product-image">
+        <img src="udangsegar.jpg" alt="Udang segar">
+      </div>
+      <div class="product-info">
+        <span class="product-badge">Terlaris</span>
+        <h3>Udang Segar</h3>
+        <p>Produk laut yang dijaga kesegarannya.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Indramayu · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp65.000 / kg</div>
+        <button class="btn" onclick="addCart('Udang Segar',65000)">
+          Tambah Keranjang
+        </button>
+      </div>
+    </div>
+
+    <div class="product" data-category="sayur" data-location="Ciwidey" data-lat="-7.102" data-lng="107.472">
+      <div class="product-image">
+        <img src="brokoli.jpg" alt="Brokoli segar">
+      </div>
+      <div class="product-info">
+        <h3>Brokoli</h3>
+        <p>Sayuran segar untuk kebutuhan dapur.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Ciwidey · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp22.000 / kg</div>
+        <button class="btn" onclick="addCart('Brokoli',22000)">
+          Tambah Keranjang
+        </button>
+      </div>
+    </div>
+
+    <div class="product" data-category="laut" data-location="Pelabuhan Ratu" data-lat="-6.987" data-lng="106.551">
+      <div class="product-image">
+        <img src="cumi-cumi.jpg" alt="Cumi segar">
+      </div>
+      <div class="product-info">
+        <h3>Cumi Segar</h3>
+        <p>Produk hasil laut untuk kebutuhan kuliner.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Pelabuhan Ratu · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp55.000 / kg</div>
+        <button class="btn" onclick="addCart('Cumi Segar',55000)">
+          Tambah Keranjang
+        </button>
+      </div>
+    </div>
+
+    <div class="product" data-category="sayur" data-location="Subang" data-lat="-6.571" data-lng="107.758">
+      <div class="product-image">
+        <img src="beras.jpg" alt="Beras segar">
+      </div>
+      <div class="product-info">
+        <h3>Beras</h3>
+        <p>Beras pilihan dari hasil panen petani lokal.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Subang · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp16.000 / kg</div>
+        <button class="btn" onclick="addCart('Beras',16000)">Tambah Keranjang</button>
+      </div>
+    </div>
+
+    <div class="product" data-category="sayur" data-location="Garut" data-lat="-7.217" data-lng="107.902">
+      <div class="product-image">
+        <img src="Cabai Merah.jpg" alt="Cabai Merah">
+      </div>
+      <div class="product-info">
+        <h3>Cabai Merah</h3>
+        <p>Cabai segar dengan rasa pedas dan warna cerah.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Garut · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp28.000 / kg</div>
+        <button class="btn" onclick="addCart('Cabai Merah',28000)">Tambah Keranjang</button>
+      </div>
+    </div>
+
+    <div class="product" data-category="sayur" data-location="Lembang" data-lat="-6.817" data-lng="107.617">
+      <div class="product-image">
+        <img src="sawi hijau.jpg" alt="Sawi Hijau">
+      </div>
+      <div class="product-info">
+        <h3>Sawi Hijau</h3>
+        <p>Sawi segar untuk tumisan dan hidangan rumahan.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Lembang · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp12.000 / kg</div>
+        <button class="btn" onclick="addCart('Sawi Hijau',12000)">Tambah Keranjang</button>
+      </div>
+    </div>
+
+    <div class="product" data-category="sayur" data-location="Ciwidey" data-lat="-7.102" data-lng="107.472">
+      <div class="product-image">
+        <img src="tomat.jpg" alt="Tomat">
+      </div>
+      <div class="product-info">
+        <h3>Tomat</h3>
+        <p>Tomat matang segar untuk masakan dan sambal.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Ciwidey · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp16.000 / kg</div>
+        <button class="btn" onclick="addCart('Tomat',16000)">Tambah Keranjang</button>
+      </div>
+    </div>
+
+    <div class="product" data-category="sayur" data-location="Bandung" data-lat="-6.914" data-lng="107.609">
+      <div class="product-image">
+        <img src="bawang putih.jpg" alt="Bawang Putih">
+      </div>
+      <div class="product-info">
+        <h3>Bawang Putih</h3>
+        <p>Bumbu dapur pilihan yang disimpan dalam kondisi kering.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Bandung · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp38.000 / kg</div>
+        <button class="btn" onclick="addCart('Bawang Putih',38000)">Tambah Keranjang</button>
+      </div>
+    </div>
+
+    <div class="product" data-category="sayur" data-location="Brebes" data-lat="-6.869" data-lng="109.036">
+      <div class="product-image">
+        <img src="bawang merah.jpg" alt="Bawang Merah">
+      </div>
+      <div class="product-info">
+        <h3>Bawang Merah</h3>
+        <p>Bawang merah segar dari sentra pertanian Brebes.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Brebes · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp32.000 / kg</div>
+        <button class="btn" onclick="addCart('Bawang Merah',32000)">Tambah Keranjang</button>
+      </div>
+    </div>
+
+    <div class="product" data-category="laut" data-location="Indramayu" data-lat="-6.326" data-lng="108.320">
+      <div class="product-image">
+        <img src="ikan kembung.jpg" alt="Ikan Kembung">
+      </div>
+      <div class="product-info">
+        <h3>Ikan Kembung</h3>
+        <p>Ikan laut segar, cocok untuk berbagai masakan.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Indramayu · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp35.000 / kg</div>
+        <button class="btn" onclick="addCart('Ikan Kembung',35000)">Tambah Keranjang</button>
+      </div>
+    </div>
+
+    <div class="product" data-category="laut" data-location="Cirebon" data-lat="-6.732" data-lng="108.552">
+      <div class="product-image">
+        <img src="ikan teri.jpg" alt="Ikan Teri">
+      </div>
+      <div class="product-info">
+        <h3>Ikan Teri</h3>
+        <p>Ikan teri pilihan untuk lauk dan pelengkap masakan.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Cirebon · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp60.000 / kg</div>
+        <button class="btn" onclick="addCart('Ikan Teri',60000)">Tambah Keranjang</button>
+      </div>
+    </div>
+
+    <div class="product" data-category="laut" data-location="Pelabuhan Ratu" data-lat="-6.987" data-lng="106.551">
+      <div class="product-image">
+        <img src="gurita.jpg" alt="Gurita">
+      </div>
+      <div class="product-info">
+        <h3>Gurita</h3>
+        <p>Hasil laut segar untuk aneka hidangan seafood.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Pelabuhan Ratu · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp85.000 / kg</div>
+        <button class="btn" onclick="addCart('Gurita',85000)">Tambah Keranjang</button>
+      </div>
+    </div>
+
+    <div class="product" data-category="laut" data-location="Cirebon" data-lat="-6.732" data-lng="108.552">
+      <div class="product-image">
+        <img src="kepiting.jpg" alt="Kepiting">
+      </div>
+      <div class="product-info">
+        <h3>Kepiting</h3>
+        <p>Kepiting segar untuk sajian istimewa di rumah.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Cirebon · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp95.000 / kg</div>
+        <button class="btn" onclick="addCart('Kepiting',95000)">Tambah Keranjang</button>
+      </div>
+    </div>
+
+    <div class="product" data-category="laut" data-location="Cirebon" data-lat="-6.732" data-lng="108.552">
+      <div class="product-image">
+        <img src="kerang.jpg" alt="Kerang">
+      </div>
+      <div class="product-info">
+        <h3>Kerang</h3>
+        <p>Kerang segar yang cocok untuk sup dan tumisan.</p>
+        <div class="product-tags">
+          <span class="location-tag" data-location-tag>📍 Cirebon · aktifkan lokasi</span>
+          <span class="recommendation-tag">Rekomendasi</span>
+        </div>
+        <div class="price">Rp45.000 / kg</div>
+        <button class="btn" onclick="addCart('Kerang',45000)">Tambah Keranjang</button>
+      </div>
+    </div>
+
+  </div>
+
+  <p id="cart-message" class="cart-message"></p>
+</section>
+
+<!-- SUPPLIER -->
+<section class="supplier" id="supplier">
+  <div class="supplier-content">
+    <div>
+      <h2>Petani & Nelayan, Mari Bergabung!</h2>
+      <p>
+        Agrisea membuka peluang kerja sama bagi petani
+        dan nelayan untuk memasarkan produk secara digital,
+        memperluas jangkauan pasar, dan meningkatkan
+        potensi pendapatan.
+      </p>
+    </div>
+
+    <a href="mailto:mitra@agrisea.id" class="btn">
+      Daftar Menjadi Mitra
+    </a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="section-title">
+    <h2>Bagaimana Agrisea Bekerja?</h2>
+    <p>Alur distribusi dari sumber hingga ke tangan konsumen.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <strong>1</strong>
+      <h3>Supplier</h3>
+      <p>Petani dan nelayan memasukkan produk, stok, dan harga.</p>
+    </div>
+
+    <div class="step">
+      <strong>2</strong>
+      <h3>Quality Control</h3>
+      <p>Produk diperiksa, disortir, dan dikemas oleh petani.</p>
+    </div>
+
+    <div class="step">
+      <strong>3</strong>
+      <h3>Pemesanan</h3>
+      <p>Pembeli memesan produk melalui marketplace Agrisea.</p>
+    </div>
+
+    <div class="step">
+      <strong>4</strong>
+      <h3>Delivery</h3>
+      <p>Produk dikirim kepada konsumen sesuai jadwal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AI -->
+<section class="ai">
+  <h2>🌐 Smart Agriculture & Marine Technology</h2>
+  <p>
+    Agrisea mengembangkan konsep AI Demand Forecasting
+    untuk memprediksi permintaan pasar, membantu
+    memperkirakan kebutuhan stok, mengurangi produk
+    terbuang, serta mengoptimalkan distribusi hasil
+    tani dan laut.
+  </p>
+</section>
+
+<!-- CONTACT -->
+<footer id="contact">
+  <h2>Agri<span style="color:#51c878">sea.</span></h2>
+
+  <p>
+    From Farm & Sea to Your Table.
+  </p>
+
+  <p>
+    Menghubungkan potensi pertanian dan kelautan
+    untuk Indonesia yang lebih berkelanjutan.
+  </p>
+
+  <p>
+    Email: @agrisea.id
+  </p>
+  <p>
+    Instagram: @agrisea.id
+  </p>
+  <p>
+    Tiktok: @agrisea.id
+  </p>
+
+  <p style="margin-top:25px;font-size:12px">
+    © 2026 Agrisea. All Rights Reserved.
+  </p>
+</footer>
+
+</div>
+
+<script src="script.js" defer></script>
+
+</body>
+</html>

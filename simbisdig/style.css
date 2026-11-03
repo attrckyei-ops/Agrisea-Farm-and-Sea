@@ -1,0 +1,717 @@
+:root {
+  --blue: #075b7c;
+  --deep: #063b55;
+  --green: #35a853;
+  --gold: #efaF24;
+  --light: #f3f9f7;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: #263b46;
+  background: white;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.login-screen {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(420px, .95fr);
+  background: white;
+}
+
+.login-brand {
+  min-height: 100vh;
+  padding: 38px 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  background-color: var(--deep);
+  background-image:
+    linear-gradient(135deg, rgba(6, 59, 85, .92), rgba(6, 59, 85, .78)),
+    url("WhatsApp Image 2026-11-02 at 22.10.57.jpeg");
+  background-position: center, center;
+  background-size: cover, min(72%, 620px) auto;
+  background-repeat: no-repeat;
+}
+
+.login-logo {
+  width: fit-content;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.login-logo span {
+  color: #62d27d;
+}
+
+.login-brand-copy {
+  max-width: 520px;
+  padding: 56px 0;
+}
+
+.login-eyebrow {
+  margin-bottom: 14px;
+  color: #b7e6c1;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.4px;
+}
+
+.login-brand-copy h1 {
+  max-width: 500px;
+  margin-bottom: 16px;
+  font-size: 42px;
+  line-height: 1.18;
+}
+
+.login-brand-copy > p:last-child,
+.login-brand-foot {
+  color: #d3e5e9;
+  line-height: 1.7;
+}
+
+.login-panel {
+  min-height: 100vh;
+  padding: 48px;
+  display: grid;
+  place-items: center;
+}
+
+.login-form-wrap {
+  width: min(100%, 410px);
+}
+
+.login-eyebrow-dark {
+  color: var(--green);
+}
+
+.login-form-wrap h2 {
+  margin-bottom: 8px;
+  color: var(--deep);
+  font-size: 32px;
+}
+
+.login-intro {
+  margin-bottom: 26px;
+  color: #718087;
+  line-height: 1.6;
+}
+
+.role-selector {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  margin-bottom: 24px;
+  padding: 4px;
+  border-radius: 6px;
+  background: #edf3f2;
+}
+
+.role-option {
+  min-height: 42px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #52666c;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.role-option.active {
+  background: white;
+  color: var(--deep);
+  box-shadow: 0 1px 5px #063b5518;
+}
+
+.login-form {
+  display: grid;
+  gap: 10px;
+}
+
+.login-form label {
+  margin-top: 6px;
+  color: #344b55;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.login-form input {
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 12px;
+  border: 1px solid #cbd8d9;
+  border-radius: 5px;
+  color: #263b46;
+  font: inherit;
+}
+
+.login-form input:focus {
+  outline: 2px solid #35a85355;
+  border-color: var(--green);
+}
+
+.login-submit {
+  min-height: 48px;
+  margin-top: 12px;
+  border: 0;
+  border-radius: 5px;
+  background: var(--green);
+  color: white;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-submit:hover {
+  background: #278640;
+}
+
+.auth-note {
+  margin-top: 20px;
+  color: #718087;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+header {
+  background: white;
+  padding: 18px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px #00000010;
+}
+
+.logo {
+  color: var(--blue);
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: var(--green);
+}
+
+nav a {
+  text-decoration: none;
+  color: #344;
+  margin-left: 25px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: var(--green);
+}
+
+.cart {
+  background: var(--green);
+  color: white;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.hero {
+  min-height: 520px;
+  padding: 90px 8%;
+  display: flex;
+  align-items: center;
+  background-color: #e9f7f5;
+  background-image:
+    linear-gradient(110deg, #e9f7f5 0%, #e8f3fb 52%, rgba(232, 243, 251, .35) 100%),
+    url("WhatsApp Image 2026-11-02 at 22.10.57.jpeg");
+  background-position: center, right 8% center;
+  background-size: cover, min(38%, 390px) auto;
+  background-repeat: no-repeat;
+  background-blend-mode: normal, multiply;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  line-height: 1.2;
+  color: var(--deep);
+  margin-bottom: 20px;
+}
+
+.hero h1 span {
+  color: var(--green);
+}
+
+.hero p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #52666c;
+  margin-bottom: 28px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 24px;
+  background: var(--green);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #278640;
+}
+
+.btn-blue {
+  background: var(--blue);
+}
+
+section {
+  padding: 75px 8%;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  color: var(--deep);
+  margin-bottom: 12px;
+}
+
+.section-title p {
+  color: #718087;
+  line-height: 1.6;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.feature {
+  padding: 28px;
+  background: var(--light);
+  border-radius: 14px;
+  text-align: center;
+}
+
+.feature .icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.feature h3 {
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+
+.feature p {
+  color: #66777c;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.marketplace {
+  background: #f6faf9;
+}
+
+.filter {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.filter button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: 1px solid var(--green);
+  color: var(--green);
+  background: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.filter button:hover {
+  background: var(--green);
+  color: white;
+}
+
+.location-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: -10px 0 30px;
+}
+
+.location-button {
+  padding: 10px 14px;
+  border: 1px solid var(--blue);
+  border-radius: 6px;
+  background: white;
+  color: var(--blue);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.location-button:hover {
+  background: var(--blue);
+  color: white;
+}
+
+.location-status {
+  color: #60747c;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.product {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px #0000000c;
+}
+
+.product-image {
+  height: 170px;
+  background: #e9f4ed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 75px;
+}
+
+.product-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.product-info {
+  padding: 20px;
+}
+
+.product-info h3 {
+  color: var(--deep);
+  margin-bottom: 8px;
+}
+
+.product-badge {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #fff1d2;
+  color: #805600;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.product-info p {
+  font-size: 13px;
+  color: #7a888c;
+  margin-bottom: 12px;
+}
+
+.product-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.location-tag,
+.recommendation-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 4px 7px;
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.location-tag {
+  background: #e7f2f7;
+  color: var(--blue);
+}
+
+.recommendation-tag {
+  background: #e8f5e9;
+  color: #26743a;
+  font-weight: bold;
+}
+
+.price {
+  color: var(--green);
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.product-info button {
+  width: 100%;
+}
+
+.supplier {
+  background: white;
+}
+
+.supplier-content {
+  background: var(--deep);
+  color: white;
+  padding: 45px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.supplier-content h2 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.supplier-content p {
+  line-height: 1.8;
+  color: #d4e5eb;
+}
+
+.supplier-content .btn {
+  background: var(--gold);
+  color: var(--deep);
+  white-space: nowrap;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.step {
+  text-align: center;
+  padding: 20px;
+}
+
+.step strong {
+  display: inline-flex;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.step h3 {
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #718087;
+}
+
+.ai {
+  background: #eaf5f8;
+  text-align: center;
+}
+
+.ai h2 {
+  font-size: 30px;
+  color: var(--deep);
+  margin-bottom: 15px;
+}
+
+.ai p {
+  max-width: 700px;
+  margin: auto;
+  line-height: 1.8;
+  color: #60747c;
+}
+
+footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #063b55;
+  color: white;
+  padding: 45px 8%;
+  text-align: center;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("WhatsApp Image 2026-11-02 at 22.10.57.jpeg") no-repeat center;
+  background-size: min(52%, 640px) auto;
+  opacity: .3;
+  mix-blend-mode: multiply;
+}
+
+footer h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+footer p {
+  color: #c9dce3;
+  margin-top: 12px;
+  line-height: 1.7;
+}
+
+.cart-message {
+  margin-top: 20px;
+  color: var(--green);
+  font-weight: bold;
+}
+
+@media(max-width: 800px) {
+  .login-screen {
+    grid-template-columns: 1fr;
+  }
+
+  .login-brand {
+    min-height: 300px;
+    padding: 24px 6%;
+  }
+
+  .login-brand-copy {
+    padding: 30px 0 20px;
+  }
+
+  .login-brand-copy h1 {
+    font-size: 34px;
+  }
+
+  .login-brand-foot {
+    display: none;
+  }
+
+  .login-panel {
+    min-height: auto;
+    padding: 40px 24px;
+  }
+
+  header {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  nav {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  nav a {
+    margin: 0;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero {
+    background-image:
+      linear-gradient(110deg, #e9f7f5 0%, rgba(232, 243, 251, .94) 58%, rgba(232, 243, 251, .4) 100%),
+      url("WhatsApp Image 2026-11-02 at 22.10.57.jpeg");
+    background-position: center, right 4% center;
+    background-size: cover, min(38%, 300px) auto;
+  }
+
+  .features, .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .supplier-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media(max-width: 520px) {
+  .login-brand {
+    min-height: 235px;
+    padding: 22px 6%;
+  }
+
+  .login-brand-copy {
+    padding: 22px 0 8px;
+  }
+
+  .login-brand-copy h1 {
+    font-size: 27px;
+  }
+
+  .login-brand-copy > p:last-child {
+    font-size: 14px;
+  }
+
+  .login-panel {
+    padding: 34px 6%;
+  }
+
+  .features, .products, .steps {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 55px 6%;
+  }
+
+  .hero {
+    padding: 65px 6%;
+    background-image:
+      linear-gradient(180deg, #e9f7f5 0%, #e8f3fb 65%, rgba(232, 243, 251, .35) 100%),
+      url("WhatsApp Image 2026-11-02 at 22.10.57.jpeg");
+    background-position: center, right 8% bottom 6%;
+    background-size: cover, min(65%, 260px) auto;
+  }
+}
