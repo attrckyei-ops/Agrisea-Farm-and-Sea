@@ -234,6 +234,7 @@ nav a:hover {
 .cart-dialog {
   width: min(620px, calc(100vw - 32px));
   max-height: min(82vh, 720px);
+  margin: auto;
   padding: 0;
   border: 0;
   border-radius: 10px;
@@ -806,6 +807,42 @@ footer p {
 }
 
 @media(max-width: 520px) {
+  .login-brand {
+    min-height: 270px;
+    padding: 20px 6%;
+    background-size: cover, min(72%, 280px) auto;
+  }
+
+  .login-brand-copy {
+    padding: 24px 0 12px;
+  }
+
+  .login-brand-copy h1 {
+    max-width: 330px;
+    font-size: 29px;
+  }
+
+  .login-brand-copy > p:last-child {
+    max-width: 330px;
+    font-size: 14px;
+  }
+
+  .login-panel {
+    padding: 30px 6% 36px;
+  }
+
+  .login-form-wrap h2 {
+    font-size: 28px;
+  }
+
+  .login-intro {
+    margin-bottom: 20px;
+  }
+
+  .role-selector {
+    margin-bottom: 20px;
+  }
+
   .cart-dialog-header,
   .cart-dialog-footer {
     padding: 18px;
@@ -826,6 +863,22 @@ footer p {
 
   .cart-footer-actions {
     flex-direction: column-reverse;
+  }
+
+  .cart-clear,
+  .cart-continue {
+    width: 100%;
+    min-height: 46px;
+  }
+
+  .cart-dialog {
+    width: calc(100vw - 24px);
+    max-height: 88vh;
+    border-radius: 8px;
+  }
+
+  .cart-dialog-content {
+    max-height: 48vh;
   }
 }
 
@@ -857,23 +910,48 @@ footer p {
   }
 
   header {
-    flex-wrap: wrap;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px 16px;
+    padding: 12px 6%;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .cart {
+    padding: 9px 11px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
   }
 
   nav {
+    grid-column: 1 / -1;
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+    flex-wrap: nowrap;
+    gap: 22px;
+    overflow-x: auto;
+    padding: 2px 0 6px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  nav::-webkit-scrollbar,
+  .filter::-webkit-scrollbar {
+    display: none;
   }
 
   nav a {
+    flex: 0 0 auto;
     margin: 0;
+    font-size: 13px;
   }
 
   .hero h1 {
-    font-size: 36px;
+    font-size: 34px;
   }
 
   .hero {
@@ -895,6 +973,151 @@ footer p {
   .supplier-content {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  section[id],
+  .hero[id],
+  footer[id] {
+    scroll-margin-top: 110px;
+  }
+}
+
+@media(max-width: 520px) {
+  .hero {
+    min-height: 450px;
+    padding: 52px 6%;
+  }
+
+  .hero h1 {
+    max-width: 340px;
+    font-size: 32px;
+    line-height: 1.16;
+  }
+
+  .hero p {
+    max-width: 340px;
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 22px;
+  }
+
+  .hero .btn {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .section-title {
+    margin-bottom: 26px;
+  }
+
+  .section-title h2 {
+    font-size: 26px;
+  }
+
+  .section-title p {
+    font-size: 14px;
+  }
+
+  .features,
+  .products,
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  section {
+    padding: 44px 6%;
+  }
+
+  .feature {
+    padding: 22px 18px;
+  }
+
+  .filter {
+    display: flex;
+    gap: 8px;
+    margin: 0 -6% 22px;
+    padding: 0 6% 8px;
+    overflow-x: auto;
+    text-align: left;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+  }
+
+  .filter button {
+    flex: 0 0 auto;
+    min-height: 40px;
+    margin: 0;
+    padding: 9px 14px;
+    font-size: 13px;
+    scroll-snap-align: start;
+  }
+
+  .location-controls {
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 8px;
+    margin: 0 0 22px;
+  }
+
+  .location-button {
+    min-height: 44px;
+  }
+
+  .location-status {
+    font-size: 12px;
+  }
+
+  .products {
+    gap: 14px;
+  }
+
+  .product {
+    border-radius: 8px;
+  }
+
+  .product-image {
+    height: 150px;
+  }
+
+  .product-info {
+    padding: 16px;
+  }
+
+  .product-info h3 {
+    font-size: 17px;
+  }
+
+  .price {
+    font-size: 18px;
+  }
+
+  .supplier-content {
+    padding: 28px 22px;
+    border-radius: 8px;
+  }
+
+  .supplier-content h2 {
+    font-size: 25px;
+  }
+
+  .supplier-content .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .ai h2 {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  footer {
+    padding: 34px 6%;
+  }
+
+  footer::before {
+    background-size: min(76%, 320px) auto;
   }
 }
 
