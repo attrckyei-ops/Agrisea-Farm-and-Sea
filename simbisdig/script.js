@@ -1,5 +1,4 @@
 let cart = [];
-let totalItems = 0;
 let selectedAccountRole = "pengguna";
 
 function selectAccountRole(role, button) {
@@ -34,35 +33,113 @@ function handleLogin(event) {
 }
 
 function addCart(name, price) {
-  cart.push({name, price});
-  totalItems++;
+  const existingItem = cart.find(item => item.name === name);
+  if (existingItem) {
+    existingItem.quantity++;
+  } else {
+    cart.push({ name, price, quantity: 1 });
+  }
 
-  document.getElementById("cart-count").innerText =
-    totalItems;
+  renderCart();
 
   document.getElementById("cart-message").innerText =
     name + " berhasil ditambahkan ke keranjang!";
 }
 
 function showCart() {
-  if (cart.length === 0) {
-    alert("Keranjang masih kosong.");
+  renderCart();
+  document.getElementById("cart-dialog").showModal();
+}
+
+function closeCart() {
+  document.getElementById("cart-dialog").close();
+}
+
+function changeCartQuantity(name, amount) {
+  const item = cart.find(cartItem => cartItem.name === name);
+  if (!item) {
     return;
   }
 
-  let total = 0;
-  let detail = "KERANJANG AGRISEA\n\n";
+  item.quantity += amount;
+  if (item.quantity <= 0) {
+    removeCartItem(name);
+    return;
+  }
+
+  renderCart();
+}
+
+function removeCartItem(name) {
+  cart = cart.filter(item => item.name !== name);
+  renderCart();
+}
+
+function clearCart() {
+  cart = [];
+  renderCart();
+  document.getElementById("cart-message").innerText =
+    "Keranjang telah dikosongkan.";
+}
+
+function renderCart() {
+  const itemsContainer = document.getElementById("cart-items");
+  const emptyMessage = document.getElementById("cart-empty");
+  const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
+  const cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  document.getElementById("cart-count").innerText = itemCount;
+  document.getElementById("cart-total").innerText =
+    `Rp${cartTotal.toLocaleString("id-ID")}`;
+  emptyMessage.hidden = cart.length > 0;
+  document.getElementById("cart-clear").disabled = cart.length === 0;
+  itemsContainer.replaceChildren();
 
   cart.forEach(item => {
-    detail += item.name + " - Rp" +
-      item.price.toLocaleString("id-ID") + "\n";
-    total += item.price;
+    const row = document.createElement("article");
+    row.className = "cart-item";
+
+    const details = document.createElement("div");
+    const name = document.createElement("h3");
+    name.innerText = item.name;
+    const unitPrice = document.createElement("p");
+    unitPrice.className = "cart-item-price";
+    unitPrice.innerText = `Rp${item.price.toLocaleString("id-ID")} / item`;
+    const subtotal = document.createElement("p");
+    subtotal.className = "cart-item-subtotal";
+    subtotal.innerText = `Rp${(item.price * item.quantity).toLocaleString("id-ID")}`;
+    details.append(name, unitPrice, subtotal);
+
+    const actions = document.createElement("div");
+    actions.className = "cart-item-actions";
+
+    const quantityControl = document.createElement("div");
+    quantityControl.className = "cart-quantity-control";
+    const decreaseButton = document.createElement("button");
+    decreaseButton.type = "button";
+    decreaseButton.setAttribute("aria-label", `Kurangi ${item.name}`);
+    decreaseButton.innerText = "−";
+    decreaseButton.addEventListener("click", () => changeCartQuantity(item.name, -1));
+    const quantity = document.createElement("span");
+    quantity.className = "cart-quantity";
+    quantity.innerText = item.quantity;
+    const increaseButton = document.createElement("button");
+    increaseButton.type = "button";
+    increaseButton.setAttribute("aria-label", `Tambah ${item.name}`);
+    increaseButton.innerText = "+";
+    increaseButton.addEventListener("click", () => changeCartQuantity(item.name, 1));
+    quantityControl.append(decreaseButton, quantity, increaseButton);
+
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "cart-remove";
+    removeButton.innerText = "Hapus";
+    removeButton.addEventListener("click", () => removeCartItem(item.name));
+    actions.append(quantityControl, removeButton);
+
+    row.append(details, actions);
+    itemsContainer.append(row);
   });
-
-  detail += "\nTotal: Rp" +
-    total.toLocaleString("id-ID");
-
-  alert(detail);
 }
 
 function filterProducts(category) {

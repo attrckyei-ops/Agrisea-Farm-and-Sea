@@ -61,7 +61,7 @@
     <a href="#contact">Kontak</a>
   </nav>
 
-  <button class="cart" onclick="showCart()">
+  <button class="cart" type="button" onclick="showCart()" aria-haspopup="dialog" aria-controls="cart-dialog">
     🛒 Keranjang (<span id="cart-count">0</span>)
   </button>
 </header>
@@ -538,6 +538,35 @@
     © 2026 Agrisea. All Rights Reserved.
   </p>
 </footer>
+
+<dialog class="cart-dialog" id="cart-dialog" aria-labelledby="cart-title">
+  <div class="cart-dialog-header">
+    <div>
+      <p class="cart-kicker">PESANAN ANDA</p>
+      <h2 id="cart-title">Keranjang Belanja</h2>
+    </div>
+    <button class="cart-close" type="button" onclick="closeCart()" aria-label="Tutup keranjang">&times;</button>
+  </div>
+
+  <div class="cart-dialog-content">
+    <div class="cart-empty" id="cart-empty" hidden>
+      <span aria-hidden="true">🛒</span>
+      <p>Keranjang masih kosong.</p>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+  </div>
+
+  <div class="cart-dialog-footer">
+    <div class="cart-total-row">
+      <span>Total belanja</span>
+      <strong id="cart-total">Rp0</strong>
+    </div>
+    <div class="cart-footer-actions">
+      <button class="cart-clear" id="cart-clear" type="button" onclick="clearCart()">Kosongkan keranjang</button>
+      <button class="cart-continue" type="button" onclick="closeCart()">Lanjut belanja</button>
+    </div>
+  </div>
+</dialog>
 
 </div>
 
